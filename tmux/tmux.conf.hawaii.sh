@@ -1,7 +1,7 @@
 # Filename: ~/github/dotfiles-latest/tmux/tmux.conf.sh
 # ~/github/dotfiles-latest/tmux/tmux.conf.sh
 
-source "$HOME/code/dotfiles-latest/colorscheme/active/active-colorscheme.sh"
+source "$HOME/github/dotfiles-latest/colorscheme/active/active-colorscheme.sh"
 
 # #############################################################################
 # Do not delete the `UNIQUE_ID` line below, I use it to backup original files
@@ -10,9 +10,9 @@ source "$HOME/code/dotfiles-latest/colorscheme/active/active-colorscheme.sh"
 # #############################################################################
 
 # Tmux prefix key
-set -g prefix C-b
+#set -g prefix C-b
 #screen
-#set -g prefix C-a
+set -g prefix C-a
 
 # "xterm-256color" in alacritty and "screen-256color" in tmux doesnt have paste issues in neovim
 # "checkhealth" command in neovim shows no color warnings
@@ -61,8 +61,8 @@ set -g visual-activity off
 # I use this in combination with the `choose-tree` to sort sessions by time
 # Otherwise, by default, sessions are sorted by name, and that makes no sense
 # -l stands for `last session`, see `man tmux`
-unbind Space
-bind-key Space switch-client -l
+#unbind Space
+#bind-key Space switch-client -l
 
 # Switch between the last 3 sessions
 # I use macOS karabiner-elements mapping the "down" arrow to a bettertouchtool
@@ -124,11 +124,8 @@ set-option -g focus-events on
 # set -wF mode-style "fg=$linkarzu_color13,bg=$linkarzu_color02"
 set -wF mode-style "fg=$linkarzu_color02,bg=$linkarzu_color13"
 
-# touy: I don't like this
-# if there are no sessions, create a new window called default
+# touy: if there are no sessions, create a new window called default
 # set-hook -g session-created "new-window -n default"
-# touy: undo set-hook above
-set-hook -gu session-created
 
 # When pressing prefix+s to list sessions, I want them sorted by time
 # That way my latest used sessions show at the top of the list
@@ -161,8 +158,7 @@ bind -n D if -F '#{==:#{pane_mode},tree-mode}' 'send X' 'send D'
 # Found this gem down here:
 # https://github.com/majjoha/dotfiles/blob/cd6f966d359e16b3a7c149f96d4edb8a83e769db/.config/tmux/tmux.conf#L41
 bind M-s display-popup -E -w 75% -h 75% "\
-  
-  mux list-sessions -F '#{?session_attached,,#{session_name}}' |\
+  tmux list-sessions -F '#{?session_attached,,#{session_name}}' |\
   sed '/^$/d' |\
   fzf --reverse --header jump-to-session --preview 'tmux capture-pane -pt {}'  |\
   xargs tmux switch-client -t"
@@ -223,7 +219,6 @@ unbind K
 unbind C-j
 unbind C-k
 unbind C-l
-
 bind J select-layout even-horizontal
 bind K select-layout even-vertical
 # bind L select-layout tiled
@@ -254,11 +249,11 @@ bind M-L run-shell ~/github/dotfiles-latest/tmux/layouts/2x3/apply_layout.sh
 # sense whatsoever, because it's not ergonomic, but I call them from
 # bettertouchtool, and BTT is called from karabiner-elements
 
-tmux_sessionizer="~/github/dotfiles-latest/tmux/tools/prime/tmux-sessionizer.sh"
-tmux_sshonizer_agen="~/github/dotfiles-latest/tmux/tools/linkarzu/tmux-sshonizer-agen.sh"
-ssh_select="~/github/dotfiles-latest/tmux/tools/linkarzu/ssh-select.sh"
+#tmux_sessionizer="~/github/dotfiles-latest/tmux/tools/prime/tmux-sessionizer.sh"
+#tmux_sshonizer_agen="~/github/dotfiles-latest/tmux/tools/linkarzu/tmux-sshonizer-agen.sh"
+#ssh_select="~/github/dotfiles-latest/tmux/tools/linkarzu/ssh-select.sh"
 ## Script below goes through you `~/.ssh/config` file and shows the hosts in an fzf menu
-ssh_config_select="~/github/dotfiles-latest/tmux/tools/linkarzu/ssh_config_select.sh"
+#ssh_config_select="~/github/dotfiles-latest/tmux/tools/linkarzu/ssh_config_select.sh"
 #daily_note="~/github/dotfiles-latest/scripts/macos/mac/misc/300-dailyNote.sh"
 
 # I tend to forget my karabiner mappings, so this opens the file in a new tmux
@@ -273,7 +268,7 @@ ssh_config_select="~/github/dotfiles-latest/tmux/tools/linkarzu/ssh_config_selec
 # Don't use C-s because Its used to save the session
 # Don't use C-z, not sure what its for
 unbind C-u
-bind-key -r C-u run-shell "$tmux_sessionizer ~/github/dotfiles-latest"
+#bind-key -r C-u run-shell "$tmux_sessionizer ~/github/dotfiles-latest"
 unbind C-i
 #bind-key -r C-i run-shell "$tmux_sessionizer ~/github/watusy"
 unbind C-o
@@ -593,12 +588,6 @@ set -g @plugin 'tmux-plugins/tmux-continuum'
 set -g @continuum-restore 'on'
 # Set the save interval in minutes, default is 15
 set -g @continuum-save-interval '5'
-
-#set -g @plugin 'tmux-plugins/tmux-urlview'
-#set -g @urlview-key 'x'
-
-# ghostty only
-#bind-key -n C-S-Click run "tmux capture-pane -J -p | grep -oE '(https?://[^ ]+)' | xargs open"
 
 # Initialize TMUX plugin manager
 # (keep this line at the very bottom of tmux.conf)
