@@ -1,7 +1,7 @@
 # Filename: ~/github/dotfiles-latest/tmux/tmux.conf.sh
 # ~/github/dotfiles-latest/tmux/tmux.conf.sh
 
-source "$HOME/code/dotfiles-latest/colorscheme/active/active-colorscheme.sh"
+source "$HOME/.dotfiles/colorscheme/active/active-colorscheme.sh"
 
 # #############################################################################
 # Do not delete the `UNIQUE_ID` line below, I use it to backup original files
@@ -16,7 +16,7 @@ set -g prefix C-b
 
 # "xterm-256color" in alacritty and "screen-256color" in tmux doesnt have paste issues in neovim
 # "checkhealth" command in neovim shows no color warnings
-# set -g default-terminal "screen-256color"
+set -g default-terminal "screen-256color"
 
 # "xterm-256color" in alacritty and "xterm-256color" in tmux gives me truecolor
 # warnings in neovim
@@ -254,11 +254,11 @@ bind M-L run-shell ~/github/dotfiles-latest/tmux/layouts/2x3/apply_layout.sh
 # sense whatsoever, because it's not ergonomic, but I call them from
 # bettertouchtool, and BTT is called from karabiner-elements
 
-tmux_sessionizer="~/github/dotfiles-latest/tmux/tools/prime/tmux-sessionizer.sh"
-tmux_sshonizer_agen="~/github/dotfiles-latest/tmux/tools/linkarzu/tmux-sshonizer-agen.sh"
-ssh_select="~/github/dotfiles-latest/tmux/tools/linkarzu/ssh-select.sh"
+tmux_sessionizer="~/.dotfiles/tmux/tools/prime/tmux-sessionizer.sh"
+tmux_sshonizer_agen="~/.dotfiles/tmux/tools/touy/tmux-sshonizer-agen.sh"
+ssh_select="~/.dotfiles/tmux/tools/linkarzu/ssh-select.sh"
 ## Script below goes through you `~/.ssh/config` file and shows the hosts in an fzf menu
-ssh_config_select="~/github/dotfiles-latest/tmux/tools/linkarzu/ssh_config_select.sh"
+ssh_config_select="~/.dotfiles/tmux/tools/touy/ssh_config_select.sh"
 #daily_note="~/github/dotfiles-latest/scripts/macos/mac/misc/300-dailyNote.sh"
 
 # I tend to forget my karabiner mappings, so this opens the file in a new tmux
@@ -273,7 +273,7 @@ ssh_config_select="~/github/dotfiles-latest/tmux/tools/linkarzu/ssh_config_selec
 # Don't use C-s because Its used to save the session
 # Don't use C-z, not sure what its for
 unbind C-u
-bind-key -r C-u run-shell "$tmux_sessionizer ~/github/dotfiles-latest"
+bind-key -r C-u run-shell "$tmux_sessionizer ~/.dotfiles"
 unbind C-i
 #bind-key -r C-i run-shell "$tmux_sessionizer ~/github/watusy"
 unbind C-o
@@ -389,8 +389,8 @@ unbind -T copy-mode-vi MouseDragEnd1Pane
 
 # Bind Alt-t <M-t> in copy-mode
 # This allows me to toggle my neovim terminal even if I'm in tmux copy-mode
-bind-key -T copy-mode M-t run-shell "~/github/dotfiles-latest/tmux/tools/linkarzu/simple_toggle.sh"
-bind-key -T copy-mode-vi M-t run-shell "~/github/dotfiles-latest/tmux/tools/linkarzu/simple_toggle.sh"
+bind-key -T copy-mode M-t run-shell "~/.dotfiles/tmux/tools/touy/simple_toggle.sh"
+bind-key -T copy-mode-vi M-t run-shell "~/.dotfiles/tmux/tools/touy/simple_toggle.sh"
 
 # https://github.com/leelavg/dotfiles/blob/897aa883a/config/tmux.conf#L30-L39
 # https://scripter.co/command-to-every-pane-window-session-in-tmux/
@@ -518,7 +518,7 @@ set -g @plugin 'catppuccin/tmux#v0.3.0'
 # or frappe, macchiato, mocha
 set -g @catppuccin_flavor 'mocha'
 
-run-shell "~/github/dotfiles-latest/tmux/tools/linkarzu/set_tmux_colors.sh"
+run-shell "~/.dotfiles/tmux/tools/touy/set_tmux_colors.sh"
 
 set -g @catppuccin_window_left_separator ""
 set -g @catppuccin_window_right_separator " "
@@ -534,7 +534,7 @@ set -g @catppuccin_status_modules_left "session"
 
 # As 'man tmux' specifies:
 # Execute the first command if shell-command (run with /bin/sh) returns success or the second command otherwise
-if-shell 'test -f ~/github/dotfiles-latest/youtube-banner.txt' {
+if-shell 'test -f ~/.dotfiles/youtube-banner.txt' {
     set -g @catppuccin_status_modules_right "directory"
     set -g @catppuccin_directory_text " linkarzu   like   subscribe   "
     set -g @catppuccin_directory_icon "null"
