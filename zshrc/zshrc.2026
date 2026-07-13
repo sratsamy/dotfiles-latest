@@ -1,0 +1,100 @@
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+export EDITOR=nvim
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+export PATH=$PATH:$HOME/bin:$HOME/bin/subgit/bin
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Created by `pipx` on 2023-05-24 17:35:21
+export PATH="$PATH:/Users/sratsamy/.local/bin"
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/sratsamy/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+
+#source ~/.oh-my-zsh/plugins/gitstatus/gitstatus.prompt.zsh
+
+# Added by Windsurf
+# Not using windsurf so removed it
+# export PATH="/Users/sratsamy/.codeium/windsurf/bin:$PATH"
+
+export PATH="/Users/sratsamy/bin:$PATH"
+
+alias mp='multipass'
+alias gitfiles='git log --name-only --pretty="" develop..HEAD | sort | uniq'
+alias gbranch="git for-each-ref --sort=-committerdate refs/heads/ --format='%(refname:short)' | sed '1!G;h;$!d'"
+
+tmux_sshonizer_agen="/Users/sratsamy/code/dotfiles-latest/tmux/tools/linkarzu/tmux-sshonizer-agen.sh"
+
+# create tmux session based on directory name
+alias tfreedom='/Users/sratsamy/code/dotfiles-latest/tmux/tools/touy/tmux-sessionizer.sh /Users/sratsamy/code/freedom-number/fire-calculator'
+alias tdir='/Users/sratsamy/code/dotfiles-latest/tmux/tools/touy/tmux-sessionizer.sh'
+alias thawaii='/Users/sratsamy/code/dotfiles-latest/tmux/tools/touy/tmux-sessionizer.sh hawaii'
+
+alias tssh='/Users/sratsamy/code/dotfiles-latest/tmux/tools/touy/tmux-sshonizer-agen.sh'
+#alias t88="/Users/sratsamy/code/dotfiles-latest/tmux/tools/touy/tmux-sshonizer-agen.sh dash88"
+#alias t87="/Users/sratsamy/code/dotfiles-latest/tmux/tools/touy/tmux-sshonizer-agen.sh arb87"
+alias tcode='/Users/sratsamy/code/dotfiles-latest/tmux/tools/touy/code-dir.sh'
+alias vswork="/Users/sratsamy/code/dotfiles-latest/tmux/tools/touy/vscode-workspace.sh"
+alias cswork="/Users/sratsamy/code/dotfiles-latest/tmux/tools/touy/cursor-workspace.sh"
+alias vsdir="/Users/sratsamy/code/dotfiles-latest/tmux/tools/touy/vscode-dir.sh"
+alias csdir="/Users/sratsamy/code/dotfiles-latest/tmux/tools/touy/cscode-dir.sh"
+alias hdir="/Users/sratsamy/github/dotfiles-latest/tmux/tools/touy/hawaii-dir.sh"
+
+alias claude_skip='claude --dangerously-skip-permissions'
+alias claude_auto='claude --permission-mode auto'
+
+# ---- Eza (better ls) -----
+alias ls='ls --color=auto'
+alias ez='eza --icons=always'
+alias vi='nvim'
+
+
+# starship
+eval "$(starship init zsh)"
+
+# ---- Zoxide (better cd) ----
+eval "$(zoxide init zsh)"
+alias cd="z"
+
+# history setup 
+# history setup
+HISTFILE=$HOME/.zhistory
+SAVEHIST=1000
+HISTSIZE=999
+setopt share_history
+setopt hist_expire_dups_first
+setopt hist_ignore_dups
+setopt hist_verify
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# completion using arrow keys (based on history)
+bindkey '^[[A' history-search-backward
+bindkey '^[[B' history-search-forward
